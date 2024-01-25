@@ -126,6 +126,10 @@ server = Server(pool,"/www", debug=True)
 def base(request: Request):
     return FileResponse(request, "index.jpy", "/www")
 
+@server.route("/status")
+def status(request: Request):
+    return FileResponse(request, "status.jpy", "/www")
+    
 @server.route("/cpu", append_slash=True)
 def cpu_information_handler(request: Request):
     import microcontroller
