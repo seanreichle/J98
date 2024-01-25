@@ -103,15 +103,12 @@ class core():
         if self.tick1 == self.maxticks:
             self.tick1 = 1
             self.tick2 += 1
-            self.name = "Jarvis"
             if self.tick2 == self.maxticks:
                 self.tick2 = 1
                 self.tick3 += 1
-                self.name = "Ultron"
                 if self.tick3 == self.maxticks:
                     self.tick3 = 1
                     self.tick4 += 1
-                    self.name = "Vision"
                     if self.tick4 == self.maxticks:
                         self.tick4 = 1
                         self.tick5 += 1
