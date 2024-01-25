@@ -42,14 +42,12 @@ function newPanel(newid, url){
 		},
 		success: function(data) {
 			$('#body').append("<div id='" + newid + "'>" + data + "</div>");
-            $('#'+newid).makeMovable = function(){
-                this.movableResult = $(this).draggable({
-                    handle: ".window_header",
-                    opacity: .90,
-                    stack: ".window",
-                    zIndex: 10
-                });		
-            };            
+           		$('#body').find('#'+newid).draggable({
+				handle: ".window_header",
+				opacity: .90,
+				stack: ".window",
+				zIndex: 10
+			});		
 		},
 		complete: function(){
 			aging = setInterval( function(){  updateDiv(newid, url); }, 7000);
