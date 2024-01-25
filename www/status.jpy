@@ -97,7 +97,7 @@ function reboot(){
 
 </script>
 </head>
-<body id='body'>
+<body id='body' style='background-color:#3B6EA5;'>
 </body>
 </html>
 """
