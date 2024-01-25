@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="Sean C. Reichle" />   
+<meta name="robots" content="none" />
+<META http-equiv="Cache-Control" CONTENT="Public">
+<META NAME="KEYWORDS" CONTENT="Jarvis, Desktop, Ljinux, J, MCP, JIOT, J-IOT, Adventesia">
+
+<title>J98</title>
+
+<link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="/css/98-2.css" rel="stylesheet" type="text/css" />
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+
+<script src="/js/jquery.js" type="text/javascript"></script>
+<script src="/js/jquery-ui.js" type="text/javascript"></script>
+<script src="/js/jquery.cookie.js" type="text/javascript"></script>
+<script src="/js/jquery.form.js" type="text/javascript" language="javascript"></script>	
+
+<script type="text/javascript" language="javascript">
+/*************************************************************************************/
+// Init j-iot
+var jiot;
+var aging;
+$(document).ready(function(){
+	loadIntoDiv('programOutput', '/program.jpy');
+	//setTimeout( function(){ alert("coooool.")	},1000 * .5);
+	aging = setInterval( function(){  updateDiv('age', '/jpy/age.jpy'); }, 10000);
+});	
+
+function loadIntoDiv(div, url){
+	$.ajax({
+		type: 		"GET",
+		cache: 		false,
+		url: 		url,
+		dataType: 	"html",
+		async:		true,
+		beforeSend: function(){
+			$('#'+div).html( "Requesting..." );
+		},
+		success: function(data) {
+			$('#'+div).html( data );
+		},
+		complete: function(){		
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert("j-iot Error Accessing APP")
+		}
+	});
+}
+
+function updateDiv(div, url){
+	$.ajax({
+		type: 		"GET",
+		cache: 		false,
+		url: 		url,
+		dataType: 	"html",
+		async:		true,
+		beforeSend: function(){
+		},
+		success: function(data) {
+			$('#'+div).html( data );
+		},
+		complete: function(){		
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		}
+	});
+}
+
+function jcall(url, div, notice){
+	clearInterval(aging)
+	
+	$.ajax({
+		type: 		"GET",
+		cache: 		false,
+		url: 		url,
+		dataType: 	"html",
+		async:		false,
+		beforeSend: function(){
+			$('#'+div).html( notice );
+		},
+		success: function(data) {
+		},
+		complete: function(){		
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		}
+	});
+}
+
+</script>
+
+</head>
+<body style="background-image: linear-gradient(white); height:'100%'; width:'100%';">
+	<h2><a href="/index.jpy">J98</a></h2>
+	
+	<div>
+		<h4><input type="button" value="Run" onclick="javacript:loadIntoDiv('programOutput', '/program.jpy');" > Program</h4>
+		<div id='programOutput'>
+			<!--<iframe src="/program.jpy" height=300 width=800></iframe>-->
+		</div>
+	</div>
+	<hr>
+
+	<div>
+		<input type="button" value="System" onclick="javacript:loadIntoDiv('systemPanel', '/cpu');" >
+		<input type="button" value="os" onclick="javacript:loadIntoDiv('systemPanel', '/jpy/os.jpy');" >
+		<input type="button" value="pins" onclick="javacript:loadIntoDiv('systemPanel', '/jpy/board.jpy');" >
+		<input type="button" value="mem" onclick="javacript:loadIntoDiv('systemPanel', '/jpy/mem.jpy');" >
+		<input type="button" value="disk" onclick="javacript:loadIntoDiv('systemPanel', '/jpy/disk.jpy');" >
+		<input type="button" value="analog" onclick="javacript:loadIntoDiv('systemPanel', '/jpy/analog.jpy');" >
+		<input type="button" value="cycle" onclick="javacript:loadIntoDiv('systemPanel', '/cycle');" >
+		<input type="button" value="soul" onclick="javacript:loadIntoDiv('systemPanel', '/soul');" >
+		<input type="button" value="window" onclick="javacript:loadIntoDiv('systemPanel', '/jpy/win.jpy');" >
+		<input type="button" value="index.jpy" onclick="javacript:document.location = '/index.jpy';" >
+		<input type="button" value="status.jpy" onclick="javacript:document.location = '/status.jpy';" >
+		
+		<br><br>
+		<div id="systemPanel">
+			<iframe src="/cpu" height=60 width=640 style="border:none;" ></iframe>
+		</div>
+	</div>
+	<hr>
+	<div id='age'></div><br>
+	<input type="button" value="reboot" onclick="javacript:jcall('/jpy/reboot.jpy','programOutput','Rebooting...');" >
+
+</body>
+</html>

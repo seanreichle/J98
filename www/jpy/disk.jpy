@@ -1,0 +1,25 @@
+global jpyRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+import board
+import storage
+from os import statvfs
+
+dfr = statvfs("/")  # board
+
+def human_readable(whatever):
+    if whatever < 1024:  # kb
+        return f"{int(whatever)}b"
+    elif whatever < 1048576:  # mb
+        return f"{int(whatever/1024)}K"
+    elif whatever < 1073741824:  # gb
+        return f"{int(whatever/1048576)}M"
+    else:
+        return f"{int(whatever/1073741824)}G"
+
+
+free = dfr[1] * dfr[3]
+bs = 2
+bs_sps = " " * bs
+vfree = (human_readable(free))
+
+jpyOutput = "Free space: " + str(vfree) + "<br>"

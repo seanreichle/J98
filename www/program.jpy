@@ -1,0 +1,48 @@
+global jpyRequest, jpyRawRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+jpyOutput = ""
+
+jpyOutput += """
+	<div class="window" style="width: 600px">
+		<div class="title-bar">
+		<div class="title-bar-text">Program.jpy Output</div>
+		<div class="title-bar-controls">
+		  <button aria-label="Minimize"></button>
+		  <button aria-label="Maximize"></button>
+		  <button aria-label="Close"></button>
+		</div>
+		</div>
+		<div class="window-body">
+		<p>
+"""
+
+jpyOutput += "Hello There.<br>These are not the droids you're looking for...<br><br>"
+jpyOutput += "<hr>" + str(jiot.howOldAreYouReally()) + "<br>"
+jpyOutput += """</p>
+		</div>
+	</div>
+	<br>
+"""
+
+
+jpyOutput += """
+	<div class="window" style="width: 600px">
+		<div class="title-bar inactive">
+		<div class="title-bar-text">Request Information</div>
+		<div class="title-bar-controls">
+		  <button aria-label="Minimize"></button>
+		  <button aria-label="Maximize"></button>
+		  <button aria-label="Close"></button>
+		</div>
+		</div>
+		<div class="window-body">
+		<p>
+"""
+		
+jpyOutput += "<b>Request:</b> " + str(jpyRequest) + "<br><br>"
+jpyOutput += "<b>RawRequest:</b> " + str(jpyRawRequest) + "<br>"
+		
+jpyOutput += """</p>
+		</div>
+	</div>
+"""

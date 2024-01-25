@@ -1,0 +1,62 @@
+global jpyRequest, jpyRawRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+import os
+import gc
+import board
+import storage
+from os import statvfs
+import microcontroller
+
+jpyOutput = ""
+
+def human_readable(whatever):
+    if whatever < 1024:  # kb
+        return f"{int(whatever)}b"
+    elif whatever < 1048576:  # mb
+        return f"{int(whatever/1024)}K"
+    elif whatever < 1073741824:  # gb
+        return f"{int(whatever/1048576)}M"
+    else:
+        return f"{int(whatever/1073741824)}G" 
+
+# disk
+dfr = statvfs("/")  # board
+free = dfr[1] * dfr[3]
+bs = 2
+bs_sps = " " * bs
+vfree = (human_readable(free))
+
+# os
+info = os.uname()
+
+# mem
+gc.collect()
+
+#temp
+temp = microcontroller.cpu.temperature
+
+title = "Uptime"
+width = "700px"
+
+body = "<h4>Hello, I am "+str(jiot.name)+"</h4>"
+body += "<div id='age'>" + str(jiot.howOldAreYouReally()) 
+body += "<div>@ " + str(jiot.Hz) + " Hz</div>"
+body += "<br><hr>Uptime: " +  str(jiot.getUpTime()) 
+body += "<br><hr>Cycle: " + str(jiot.getCycleClock()) 
+body += "<br><hr>Cycle Rate Sample:<br>" + str(jiot.getCycleSpeed()) 
+body += "<br><hr>Cycle Rate Avg:<br>" +  str(jiot.getAvgSpeed())
+body += "<br><input type='button' value='Reboot' onclick='javascript:reboot();'>"
+body += "</div>"
+
+jpyOutput += "<div class='window ui-widget' style='width: "+width+"'><div class='title-bar ui-widget-header window_header ui-dialog-titlebar ui-resizable ui-dialog-title'><div class='title-bar-text'>"+title+"</div></div>"
+jpyOutput += "<div class='window-body ui-dialog-content'>" + body  
+
+jpyOutput += "</div>"
+
+jpyOutput += "<div class='status-bar'>"
+jpyOutput += "<p class='status-bar-field'>" + str(info.machine) + "</p>"
+jpyOutput += "<p class='status-bar-field'>" + "Free RAM: " + str(human_readable(gc.mem_free())) + "</p>"
+jpyOutput += "<p class='status-bar-field'>" + "Free Disk: " + str(vfree) + "</p>"
+jpyOutput += "<p class='status-bar-field'>" + "Temp: " + str(temp) + "</p>"
+
+jpyOutput += "</div></div>"

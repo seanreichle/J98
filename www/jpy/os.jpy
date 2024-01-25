@@ -1,0 +1,5 @@
+global jpyRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+import os
+jpyOutput = str(os.uname()) + "<br>"
+

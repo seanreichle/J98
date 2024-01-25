@@ -1,0 +1,4 @@
+global jpyRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+import board
+jpyOutput = str(dir(board))

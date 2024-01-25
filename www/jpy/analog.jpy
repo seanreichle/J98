@@ -1,0 +1,10 @@
+global jpyRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+import board
+from digitalio import DigitalInOut, Direction, Pull
+from analogio import AnalogIn, AnalogOut
+
+jpyOutput = "A0 : "+ str(a0.value) + "<br>"
+jpyOutput += "A1 : "+ str(a1.value) + "<br>"
+jpyOutput += "A2 : "+ str(a2.value) + "<br>"
+jpyOutput += "A3 : "+ str(a3.value) + "<br>"

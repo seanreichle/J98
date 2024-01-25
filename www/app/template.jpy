@@ -1,0 +1,17 @@
+global jpyRequest, jpyRawRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+jpyOutput = ""
+
+title = "Template"
+width = "500px"
+body = "<p>Greetings Program</p>"
+
+jpyOutput += "<div class='window' style='width: " + width + "'>"
+jpyOutput += "<div class='title-bar'>"
+jpyOutput += "<div class='title-bar-text'>" + title + "</div>"
+#jpyOutput += "<div class='title-bar-controls'> <button aria-label='Minimize'></button> <button aria-label='Maximize'></button> <button aria-label='Close'></button> </div>"
+
+jpyOutput += "</div>"
+jpyOutput += "<div class='window-body'>" + body + "</div>"
+
+jpyOutput += "</div>"

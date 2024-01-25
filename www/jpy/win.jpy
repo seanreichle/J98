@@ -1,0 +1,26 @@
+global jpyRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+import os
+
+jpyOutput += """
+	<div class="window" style="width: 300px">
+		<div class="title-bar inactive">
+		<div class="title-bar-text">OS Information</div>
+		<div class="title-bar-controls">
+		  <button aria-label="Minimize"></button>
+		  <button aria-label="Maximize"></button>
+		  <button aria-label="Close"></button>
+		</div>
+		</div>
+		<div class="window-body">
+		<p>
+"""
+info = os.uname()
+jpyOutput += "<p>" + str(info.machine) + "<br>"
+jpyOutput += "<br><a href='https://jdan.github.io/98.css/' target='_blank'>styleguide</a> <br>"
+
+jpyOutput += """</p>
+		</div>
+	</div>
+"""
+

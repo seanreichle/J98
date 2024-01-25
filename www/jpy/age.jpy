@@ -1,0 +1,3 @@
+global jpyRequest, jpyRawRequest, jpyOutput, jpyHeader, jpyFile, jpyCode
+
+jpyOutput = str(jiot.howOldAreYouReally())
