@@ -8,3 +8,5 @@ And a fuzzylogic perceptron.
 Project Starter Pkg
 
 For CircuitPython
+
+index.jpy is the same as status.jpy
