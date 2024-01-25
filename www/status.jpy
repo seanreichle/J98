@@ -41,7 +41,13 @@ function newPanel(newid, url){
 		beforeSend: function(){
 		},
 		success: function(data) {
-			$('#body').append("<div id='" + newid + "'>" + data + "</div>");            
+			$('#body').append("<div id='" + newid + "'>" + data + "</div>");
+			$('#body').find('#'+newid).draggable({
+				handle: ".window_header",
+				opacity: .90,
+				stack: ".window",
+				zIndex: 10
+			});		
 		},
 		complete: function(){
 			aging = setInterval( function(){  updateDiv(newid, url); }, 7000);
