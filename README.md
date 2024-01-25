@@ -6,3 +6,5 @@ And a brain.
 And a fuzzylogic perceptron.
 
 Project Starter Pkg
+
+For CircuitPython
